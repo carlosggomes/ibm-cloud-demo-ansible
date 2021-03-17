@@ -27,12 +27,12 @@
 
   - name: Download nginx config file
     get_url:
-      url: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/templates/site.conf.j2
+      url: https://raw.githubusercontent.com/carlosggomes/ibm-cloud-demo-ansible/main/templates/site.conf.j2
       dest: /etc/nginx/sites-enabled/{{ domain }}
 
   - name: Download nginx index.html
     get_url:
-      url: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/index.html
+      url: https://raw.githubusercontent.com/carlosggomes/ibm-cloud-demo-ansible/main/site/index.html
       dest: /var/www/{{ domain }}/index.html
  
   # - name: copy nginx site.conf

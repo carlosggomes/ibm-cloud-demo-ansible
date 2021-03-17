@@ -1,3 +1,5 @@
+# ref: https://graspingtech.com/ansible-nginx-static-site/
+
 - hosts: web
   become: yes
   tasks:
@@ -19,6 +21,14 @@
       # owner: "{{ ansible_user }}"
       # group: "{{ ansible_user }}"
 
+  - name: "create imgages directory"
+    file:
+      path: /var/www/{{ domain }}/images
+      state: directory
+      mode: '0775'
+      # owner: "{{ ansible_user }}"
+      # group: "{{ ansible_user }}"      
+
   - name: delete default nginx site
     file:
       path: /etc/nginx/sites-enabled/default
@@ -34,16 +44,12 @@
     get_url:
       url: https://raw.githubusercontent.com/carlosggomes/ibm-cloud-demo-ansible/main/site/index.html
       dest: /var/www/{{ domain }}/index.html
- 
-  # - name: copy nginx site.conf
-  #   template:
-  #     src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/templates/site.conf.j2
-  #     # src: https://raw.githubusercontent.com/carlosggomes/ibm-cloud-demo-ansible/main/templates/site.conf.j2
-  #     dest: /etc/nginx/sites-enabled/{{ domain }}
-  #     owner: root
-  #     group: root
-  #     mode: '0644'
-  #   notify: restart nginx
+
+  - name: Download nginx image
+    get_url:
+      url: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/images/image001.png
+      dest: /var/www/{{ domain }}/images/image001.png
+
 
   handlers:
     - name: restart nginx

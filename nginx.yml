@@ -8,10 +8,10 @@
       update_cache: yes
       cache_valid_time: 3600
 
-  - name: "install nginx"
-    apt:
-      name: ['nginx']
-      state: latest
+  # - name: "install nginx"
+  #   apt:
+  #     name: ['nginx']
+  #     state: latest
 
   - name: "create www directory"
     file:

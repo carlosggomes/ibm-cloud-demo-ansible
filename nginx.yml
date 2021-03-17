@@ -34,17 +34,17 @@
       mode: '0644'
     notify: restart nginx
 
+  - name: copy nginx index.html
+    template:
+      src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/index.html
+      dest: /etc/nginx/sites-enabled/{{ domain }}
+    notify: restart nginx
+
   handlers:
     - name: restart nginx
       service:
         name: nginx
         state: restarted
-
-  - name: copy site index.html
-    template:
-      src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/index.html
-      dest: /etc/nginx/sites-enabled/{{ domain }}
-    notify: restart nginx
 
   # - name: "sync website"
   #   synchronize:

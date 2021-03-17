@@ -25,20 +25,23 @@
       state: absent
     notify: restart nginx
 
+  # - name: copy nginx index.html
+  #   template:
+  #     src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/index.html
+  #     dest: /var/www/{{ domain }}
+  #   notify: restart nginx
+
   - name: copy nginx site.conf
     template:
-      src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/templates/site.conf.j2
+      # src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/templates/site.conf.j2
+      src: https://raw.githubusercontent.com/carlosggomes/ibm-cloud-demo-ansible/main/templates/site.conf.j2
       dest: /etc/nginx/sites-enabled/{{ domain }}
       owner: root
       group: root
       mode: '0644'
     notify: restart nginx
 
-  - name: copy nginx index.html
-    template:
-      src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/blob/main/site/index.html
-      dest: /etc/nginx/sites-enabled/{{ domain }}
-    notify: restart nginx
+
 
   handlers:
     - name: restart nginx

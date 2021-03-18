@@ -8,10 +8,18 @@
       update_cache: yes
       cache_valid_time: 3600
 
+ - name: Pause for 1 minute
+  pause:
+    minutes: 1
+ 
   - name: "install nginx"
     apt:
       name: ['nginx']
       state: latest
+
+ - name: Pause for 1 minute
+  pause:
+    minutes: 1
 
   - name: "create www directory"
     file:

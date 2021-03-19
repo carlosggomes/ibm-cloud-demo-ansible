@@ -50,13 +50,3 @@
       service:
         name: nginx
         state: restarted
-
-  # - name: "sync website"
-  #   synchronize:
-  #     src: https://github.com/carlosggomes/ibm-cloud-demo-ansible/tree/main/site/
-  #     dest: /var/www/{{ domain }}
-  #     archive: no
-  #     checksum: yes
-  #     recursive: yes
-  #     delete: yes
-  #   become: no
